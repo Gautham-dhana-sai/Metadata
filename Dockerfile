@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 2000
 
-CMD ["node", "src/server.js"]
+CMD ["npm", "run", "start"]

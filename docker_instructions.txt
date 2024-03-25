@@ -1,0 +1,50 @@
+pull an image -> docker pull image_name
+
+build docker image -> docker build -t image_name(docker_name/repo_name):tag .(path of dockerFile from current directory)
+
+images in docker -> docker images
+
+containers in docker -> docker container ls -a
+
+start a containers -> docker start container_names
+
+restart containers -> docker restart container_names
+
+stop a containers -> docker stop container_names
+
+check running containers -> docker ps
+
+delete an image -> docker image -rm image_names -f
+
+delete a container -> docker container -rm container_names
+
+create containers from image -> docker run -d -p new_port:exposed_port -rm -v path_of_project:workdir_path 
+                                -v path_from_workdir to remian changes unchangable or uneffectable 
+                                --name container_name image_name:tag
+
+removes all the items from docker -> docker system prune -a
+
+docker compose all projects -> docker-compose up
+
+stop all docker compose projects -> docker-compose down --rmi all -v
+                                
+docker login -> docker login
+
+push an image -> docker push image_name(image_name should be user_name/repo_name)
+
+
+-a = all
+-d = detaches the terminal 
+-p = port
+-v = volumes to remain changes from local code to container
+--name = naming the container
+-rm = delete the container after stopping it
+-f = force
+--rmi = remove images
+
+
+# to run 2 or more containers connecting to each other they have to be on same docker network
+
+create a network -> docker network create mynetwork
+
+connect containers to that network -> docker network connect mynetwork container_name

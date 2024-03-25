@@ -25,6 +25,7 @@ TestingRoutes.get("/", async (req, res) => {
     console.log("hit works");
     const data = await Test.find();
     // console.log(data);
+    // res.write("<h1>Hello</h1>");
     res.status(200).json({ response: data });
     res.end();
   } catch (err) {

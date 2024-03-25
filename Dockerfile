@@ -1,15 +1,15 @@
-FROM node:16.20-alpine AS node
+FROM node:16.20-alpine
 
-COPY . .
+RUN npm install -g nodemon
+
+WORKDIR /app
+
+COPY package.json .
 
 RUN npm install
 
-EXPOSE 3000
+COPY . .
+
+EXPOSE 2000
 
 CMD ["node", "src/server.js"]
-
-FROM mongo:latest AS mongo
-
-EXPOSE 27017
-
-CMD ["mongod"]

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const mongoUrl = "mongodb://127.0.0.1:27017/metadata";
+const mongoUrl = "mongodb://mongo:27017/start";
 try {
   mongoose.connect(mongoUrl, {});
   console.log("connected");

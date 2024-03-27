@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 
-const mongoUrl = "mongodb://mongo:27017/start";
+require('dotenv').config()
+
+const IP = process.env.MONGO_IP
+const PORT = process.env.MONGO_PORT
+const DB = process.env.MONGO_DB
+
+const mongoUrl = `mongodb://${IP}:${PORT}/${DB}`;
 try {
   mongoose.connect(mongoUrl, {});
   console.log("connected");

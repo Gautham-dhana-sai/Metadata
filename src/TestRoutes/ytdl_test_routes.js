@@ -5,9 +5,11 @@ const fs = require("fs");
 const path = require("path");
 const Audio = require("../Models/audio");
 
+const jwtAuth = require("../Library/auth");
+
 const YTDLRoutes = express.Router();
 
-YTDLRoutes.post("/ytdl/test", async (req, res) => {
+YTDLRoutes.post("/ytdl/test", jwtAuth, async (req, res) => {
   const schema = Joi.object({
     url: Joi.string().optional().allow(null, ""),
     videoID: Joi.string().optional().allow(null, ""),
@@ -50,7 +52,7 @@ YTDLRoutes.post("/ytdl/test", async (req, res) => {
   }
 });
 
-YTDLRoutes.get("/ytdl/play/audio", async (req, res) => {
+YTDLRoutes.get("/ytdl/play/audio", jwtAuth, async (req, res) => {
   try {
     const audio = await Audio.findOne({ name: "Karthik's Supremacy Songs" });
     console.log("reaching");

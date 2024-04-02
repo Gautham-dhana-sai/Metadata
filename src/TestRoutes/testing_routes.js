@@ -3,9 +3,11 @@ const express = require("express");
 const Audio = require("../Models/audio");
 const Test = require("../Models/test");
 
+const jwtAuth = require("../Library/auth");
+
 const TestingRoutes = express.Router();
 
-TestingRoutes.get("/using", async (req, res) => {
+TestingRoutes.get("/using", jwtAuth, async (req, res) => {
   try {
     console.log("api using");
     const test = new Test({
@@ -20,7 +22,7 @@ TestingRoutes.get("/using", async (req, res) => {
   }
 });
 
-TestingRoutes.get("/", async (req, res) => {
+TestingRoutes.get("/", jwtAuth, async (req, res) => {
   try {
     console.log("hit works");
     const data = await Test.find();

@@ -2,9 +2,11 @@ const getMetaData = require("metadata-scraper");
 const express = require("express");
 const Joi = require("joi");
 
+const jwtAuth = require("../Library/auth");
+
 MetaDataTest = express.Router();
 
-MetaDataTest.post("/metadata/test", (req, res) => {
+MetaDataTest.post("/metadata/test", jwtAuth, (req, res) => {
   const schema = Joi.object({
     url: Joi.string().optional().allow(null, ""),
   });

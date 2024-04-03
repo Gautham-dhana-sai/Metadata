@@ -2,8 +2,10 @@ const express = require("express");
 const yts = require("yt-search");
 const Joi = require("joi");
 
+const jwtAuth = require("../Library/auth");
+
 const YTSRoutes = express.Router();
-YTSRoutes.post("/yts/test", async (req, res) => {
+YTSRoutes.post("/yts/test", jwtAuth, async (req, res) => {
   const schema = Joi.object({
     search: Joi.string().required(),
   });

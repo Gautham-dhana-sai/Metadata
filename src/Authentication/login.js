@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../Models/user");
 
+const sendMails = require("../Library/mail");
+
 const LoginRoutes = express.Router();
 
 LoginRoutes.post("/login/user", async (req, res) => {
@@ -16,6 +18,7 @@ LoginRoutes.post("/login/user", async (req, res) => {
     const user = await User.findOne({ email: body.email });
     if (!user) {
       res.status(403).json({ response: "User not found" });
+      res.end();
     }
     console.log(user);
     const validPassword = await user.comparePassword(body.password);
@@ -25,6 +28,7 @@ LoginRoutes.post("/login/user", async (req, res) => {
     const token = jwt.sign({ email: user.email }, process.env.JWT_KEY, {
       expiresIn: "1h",
     });
+    await sendMails(req);
     res.status(200).json({ response: token });
   } catch (error) {
     console.log(error);

@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-require('dotenv').config()
+require("dotenv").config();
 
-const IP = process.env.MONGO_IP
-const PORT = process.env.MONGO_PORT
-const DB = process.env.MONGO_DB
+const IP = process.env.MONGO_IP;
+const PORT = process.env.MONGO_PORT;
+const DB = process.env.MONGO_DB;
 
 const mongoUrl = `mongodb://${IP}:${PORT}/${DB}`;
 try {

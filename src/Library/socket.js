@@ -11,6 +11,19 @@ const socket = (server) => {
       socket.emit(ios.type, "yes done");
     });
   });
+
+  io.of('/chat')
+    .on('connection', (socket) => {
+      socket.on('join', (user) => {
+          socket.join(user)
+          io.of('/chat').in(user).emit('join', 'successfully joined')
+      })
+
+      socket.on('message', ({room, message}) => {
+        console.log('came', room)
+        io.of('/chat').in(room).emit('message', {room, message})
+      })
+    })
 };
 
 module.exports = { socket };

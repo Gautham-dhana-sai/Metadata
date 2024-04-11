@@ -1,5 +1,5 @@
 const socket = require("socket.io-client");
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config({ path: "../../../.env" });
 
 const PORT = process.env.SERVER_PORT;
 const HOST = process.env.SERVER_IP;

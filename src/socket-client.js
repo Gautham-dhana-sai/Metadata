@@ -1,12 +1,11 @@
 const socket = require("socket.io-client");
+require("dotenv").config({ path: "../.env" });
 
 const PORT = process.env.SERVER_PORT;
 const HOST = process.env.SERVER_IP;
-console.log(PORT, HOST);
 const socketUrl = `http://${HOST}:${PORT}`;
-console.log(socketUrl);
-const Url = `http://localhost:2000`;
-const client = socket.connect(Url);
+
+const client = socket.connect(socketUrl);
 
 client.on("new", (data) => {
   console.log(data);

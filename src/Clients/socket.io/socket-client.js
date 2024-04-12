@@ -11,8 +11,12 @@ client.on("new", (data) => {
   console.log(data);
 });
 
-(function check() {
-  const data = { type: "new", msg: "new message" };
-  console.log("check", data);
-  client.emit(data.type, data);
-})();
+client.on("old", (data) => {
+  console.log(data);
+});
+
+// (function check() {
+//   const data = { type: "new", msg: "new message" };
+//   console.log("check", data);
+//   client.emit(data.type, data);
+// })();

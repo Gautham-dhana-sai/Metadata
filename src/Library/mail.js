@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-const sendMails = (req, res, next) => {
+const sendMails = (mailData) => {
   let sender = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -13,9 +13,9 @@ const sendMails = (req, res, next) => {
 
   let receiver = {
     from: process.env.SENDER_MAIL,
-    to: "ssudakhar@gmail.com",
-    subject: "Mail vachindha",
-    text: "chustunav ante vache untadhi lee",
+    to: mailData.receiver,
+    subject: mailData.subject,
+    text: mailData.content,
   };
 
   sender.sendMail(receiver, (error, resp) => {

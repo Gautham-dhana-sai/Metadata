@@ -6,6 +6,7 @@ const UserSchema = new Schema({
   username: String,
   email: String,
   password: String,
+  status: Number,
 });
 
 UserSchema.pre("save", async function (next) {

@@ -17,11 +17,6 @@ express.use(bodyParser.json());
 express.use(index);
 express.use(cors());
 
-console.log(redis, "=====");
-// redis.on("connect", () => {
-//   console.log(redis.get("admin"), "++++++++");
-// });
-
 socket(server);
 
 server.listen(PORT, (req, res) => {

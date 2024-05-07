@@ -20,12 +20,9 @@ LoginRoutes.post("/login/user", async (req, res) => {
       res.status(401).json({ response: "User not found" });
       return res.end();
     }
-    const verifiedUser = await User.findOne({ email: body.email, status: 1 });
-    if (!verifiedUser) {
-      res.status(401).json({ response: "User not verified" });
-      return res.end();
+    if(user && user.status === 0){
+      return res.status(401).json({ response: "User not verified" });
     }
-    console.log(user);
     const validPassword = await user.comparePassword(body.password);
     if (!validPassword) {
       res.status(500).json({ response: "Invalid Password" });

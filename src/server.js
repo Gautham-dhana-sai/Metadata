@@ -4,6 +4,8 @@ const http = require("http");
 const cors = require("cors");
 require("dotenv").config();
 
+const redis = require("./Clients/redis/redis-client");
+
 const index = require("./index");
 const { socket } = require("./Library/socket.io/socket");
 

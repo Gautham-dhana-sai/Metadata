@@ -16,23 +16,13 @@ client.on("error", (error) => {
 
 client.connect();
 
-client.set('new', 'yes')
-client.get('new').then((res) => {
+client.get('reload_count').then((res) => {
   console.log(res)
-})
-
-client.hSet('new:1', {
-  type: 'bad', mad: 'good'
-})
-client.hGetAll('new:1').then((res) => {
-  console.log(res)
-})
-client.hGet('new:1', 'data').then((res) => {
-  console.log(res)
-})
-
-client.keys('*').then((res) => {
-  console.log(res)
+  if(!res){
+    client.set('reload_count', 1)
+  } else {
+    client.set('reload_count', +res + 1)
+  }
 })
 
 module.exports = client;

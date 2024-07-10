@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { sendMessage } = require('../Library/webhooks/discord-webhooks')
+const { sendMessage } = require('../Clients/webhooks/discord-webhooks')
 
 const webhookRoutes = express.Router()
 

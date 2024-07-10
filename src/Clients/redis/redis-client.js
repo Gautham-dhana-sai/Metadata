@@ -21,7 +21,7 @@ client.get('reload_count').then((res) => {
   if(!res){
     client.set('reload_count', 1)
   } else {
-    client.set('reload_count', res + 1)
+    client.set('reload_count', +res + 1)
   }
 })
 

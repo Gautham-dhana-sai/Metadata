@@ -14,8 +14,8 @@ const PORT = process.env.SERVER_PORT;
 const server = http.createServer(express);
 
 express.use(bodyParser.json());
-express.use(index);
 express.use(cors());
+express.use(index);
 
 socket(server);
 

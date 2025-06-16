@@ -17,22 +17,22 @@ LoginRoutes.post("/login/user", async (req, res) => {
     const { error, value: body } = Schema.validate(req.body);
     const user = await User.findOne({ email: body.email });
     if (!user) {
-      res.status(401).json({ response: "User not found" });
+      res.status(200).json({ success: true, error: false, data: {login: false, signup: true, message: "User not found" }});
       return res.end();
     }
     if(user && user.status === 0){
-      return res.status(401).json({ response: "User not verified" });
+      return res.status(200).json({ success: true, error: false, data: {login: false, signup: true, message: "User not verified" }});
     }
     const validPassword = await user.comparePassword(body.password);
     if (!validPassword) {
-      res.status(500).json({ response: "Invalid Password" });
+      res.status(200).json({ success: true, error: false, data: {login: false, signup: false, message: "Invalid Password" }});
       return res.end();
     }
     const token = jwt.sign({ email: user.email }, process.env.JWT_KEY, {
       expiresIn: "1h",
     });
     // await sendMails(req);
-    res.status(200).json({ response: token });
+    res.status(200).json({ success: true, error: false, data: {token, login: true, signup: false, message: 'Logged in successfully.'} });
     return res.end();
   } catch (error) {
     console.log(error);
